@@ -37,7 +37,8 @@ The CSS file to style the application, making use of Bootstrap for additional st
 - **HTML5**: For structuring the web page.
 - **CSS3**: For styling the application.
 - **JavaScript**: For dynamic interactions.
-- **Bootstrap**: For responsive design and additional styling.
+
+  Deployment: json-server-vercel-liart-chi.vercel.app"
   
 ## License
 
