@@ -1,5 +1,5 @@
 // Globals
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://json-server-vercel-liart-chi.vercel.app";
 const END_POINT = "movies";
 const URL = `${BASE_URL}/${END_POINT}`;
 
