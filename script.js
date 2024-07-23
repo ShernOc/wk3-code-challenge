@@ -25,6 +25,7 @@ function setState(key, newValue) {
 // Appliation logic
 await getMovieList();
 displayFirstMovieDetails();
+displayMovieMenu();
 
 // Utility functions
 // Functionality to fetch movies from the API
@@ -65,7 +66,7 @@ function renderFirstMovieDetails(details) {
 }
 
 function updateFirstMovieEl(movieDetails) {
-  const firstMovieEl = document.querySelector(".movie-details .card");
+  const firstMovieEl = document.querySelector(".card");
   const posterEl = firstMovieEl.querySelector(".card-img-top");
   const titleEl = firstMovieEl.querySelector(".card-title");
   const runtimeEl = firstMovieEl.querySelector(".runtime");
@@ -80,4 +81,76 @@ function updateFirstMovieEl(movieDetails) {
   runtimeEl.textContent += ` ${runtime} minutes`;
   showtimeEl.textContent += ` ${showtime}`;
   availableTicketsEl.textContent += ` ${capacity - tickets_sold}`;
+}
+
+function displayMovieMenu() {
+  const movieList = getState(stateKeys.movieList);
+
+  renderMovieList(movieList);
+}
+
+function renderMovieList(movieList) {
+  const movieMenuItemElList = createMovieMenuItemElList(movieList);
+  renderMovieMenuItems(movieMenuItemElList);
+}
+
+function createMovieMenuItemElList(movieList) {
+  const movieMenuItemElList = movieList.map((movie) =>
+    createMovieMenuItemEl(movie)
+  );
+  return movieMenuItemElList;
+}
+
+function createMovieMenuItemEl(movie) {
+  const menuItemEl = document.createElement("li");
+  menuItemEl.classList.add("list-group-item");
+
+  const cardEl = document.createElement("div");
+  cardEl.classList.add("card");
+  menuItemEl.appendChild(cardEl);
+
+  const rowEl = document.createElement("div");
+  rowEl.classList.add("row", "g-0");
+  cardEl.appendChild(rowEl);
+
+  const colEl = document.createElement("div");
+  colEl.classList.add("col-1");
+  rowEl.appendChild(colEl);
+
+  const imgEl = document.createElement("img");
+  imgEl.setAttribute("src", movie.poster);
+  imgEl.classList.add("img-fluid", "rounded-start");
+  imgEl.style.maxHeight = "8rem";
+  imgEl.setAttribute("alt", movie.title);
+  colEl.appendChild(imgEl);
+
+  const col2El = document.createElement("div");
+  col2El.classList.add("col");
+  rowEl.appendChild(col2El);
+
+  const cardBodyEl = document.createElement("div");
+  cardBodyEl.classList.add("card-body");
+  col2El.appendChild(cardBodyEl);
+
+  const cardTitleEl = document.createElement("h5");
+  cardTitleEl.classList.add("card-title");
+  cardTitleEl.textContent = movie.title;
+  cardBodyEl.appendChild(cardTitleEl);
+
+  const cardTextEl = document.createElement("p");
+  cardTextEl.classList.add("card-text");
+  cardBodyEl.appendChild(cardTextEl);
+
+  return menuItemEl;
+}
+
+function renderMovieMenuItems(movieMenuItemList) {
+  const fragmentEl = document.createDocumentFragment();
+
+  for (const movieMenuItem of movieMenuItemList) {
+    fragmentEl.appendChild(movieMenuItem);
+  }
+
+  const movieListEl = document.querySelector("#movie-list");
+  movieListEl.appendChild(fragmentEl);
 }
