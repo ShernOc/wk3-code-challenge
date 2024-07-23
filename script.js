@@ -114,7 +114,7 @@ function createMovieMenuItemEl(movie) {
   cardEl.appendChild(rowEl);
 
   const colEl = document.createElement("div");
-  colEl.classList.add("col-1");
+  colEl.classList.add("col-2");
   rowEl.appendChild(colEl);
 
   const imgEl = document.createElement("img");
