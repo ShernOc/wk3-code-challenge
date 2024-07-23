@@ -1,9 +1,3 @@
-// Globals
-const BASE_URL = "https://json-server-vercel-liart-chi.vercel.app";
-const END_POINT = "movies";
-const URL = `${BASE_URL}/${END_POINT}`;
-
-// Application state
 const state = {
   movieList: [],
 };
@@ -27,8 +21,7 @@ await getMovieList();
 displayFirstMovieDetails();
 displayMovieMenu();
 
-// Utility functions
-// Functionality to fetch movies from the API
+// Fetch methond to fetch movies from the API
 async function fetchMovieList() {
   try {
     const response = await fetch(URL);
@@ -101,6 +94,7 @@ function createMovieMenuItemElList(movieList) {
   return movieMenuItemElList;
 }
 
+// DOM Manipulation 
 function createMovieMenuItemEl(movie) {
   const menuItemEl = document.createElement("li");
   menuItemEl.classList.add("list-group-item");
